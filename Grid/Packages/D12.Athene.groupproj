@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A259BA6C-6339-4EA2-BA69-03652F781622}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="D12\DMGrid.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="D12\dclDMGrid.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DMGrid">
+        <MSBuild Projects="D12\DMGrid.dproj"/>
+    </Target>
+    <Target Name="DMGrid:Clean">
+        <MSBuild Projects="D12\DMGrid.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DMGrid:Make">
+        <MSBuild Projects="D12\DMGrid.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dclDMGrid">
+        <MSBuild Projects="D12\dclDMGrid.dproj"/>
+    </Target>
+    <Target Name="dclDMGrid:Clean">
+        <MSBuild Projects="D12\dclDMGrid.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dclDMGrid:Make">
+        <MSBuild Projects="D12\dclDMGrid.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DMGrid;dclDMGrid"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DMGrid:Clean;dclDMGrid:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DMGrid:Make;dclDMGrid:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
